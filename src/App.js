@@ -92,8 +92,11 @@ class App extends Component {
         <br /><br />
         <Card numero={this.state.mesa[0]} cor={this.state.mesa[1]} />
         <div onClick={this.comprar} className="deck">
-          <Card numero={'*'} cor={4} />
+        <Card numero={'uno'} cor={4} />
         </div>
+
+        <br /><br /><br />
+        <CardList hideCard={this.state.player2} />
       </div>
     );
   }
