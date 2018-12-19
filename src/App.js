@@ -6,6 +6,7 @@ import Card from './components/Card';
 class App extends Component {
   constructor(props){
     super(props);
+    this.comprar = this.comprar.bind(this);
     this.state = {
       player1: [],
       player2: [],
@@ -46,6 +47,19 @@ class App extends Component {
     })
   }
 
+  comprar = () => {
+    let player1 = this.state.player1
+    console.log(player1);
+    let valor = Math.floor(Math.random() * 10);
+    let color = Math.floor(Math.random() * 4);
+    player1 = player1.concat([
+      [valor, color]
+    ])
+    this.setState({
+      player1: player1,
+    })
+  }
+
   checkCarta = i => {
     if(i[0] === this.state.mesa[0] || i[1] === this.state.mesa[1]){
       this.setState({
@@ -56,7 +70,7 @@ class App extends Component {
     return false;
   }
 
-  remove = (i) => {
+  remove = i => {
     var array = [...this.state.player1]; // make a separate copy of the array
     var index = array[i];
     if(this.checkCarta(index)){
@@ -66,7 +80,7 @@ class App extends Component {
         this.setState({player1: array}, () => console.log(this.state.player1));
       }
     }else{
-      alert("carta não aceita");
+      console.log("carta não aceita");
     }
   }
 
@@ -77,6 +91,9 @@ class App extends Component {
         <button onClick={this.darCartas}>Jogar</button>
         <br /><br />
         <Card numero={this.state.mesa[0]} cor={this.state.mesa[1]} />
+        <div onClick={this.comprar} className="deck">
+          <Card numero={'*'} cor={4} />
+        </div>
       </div>
     );
   }
