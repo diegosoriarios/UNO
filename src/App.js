@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import CardList from './components/CardList';
 import Card from './components/Card';
+import Modal from './components/Modal';
 
 class App extends Component {
   constructor(props){
@@ -13,6 +14,7 @@ class App extends Component {
       player2: [],
       mesa:[0, 0],
       bloqueado: false,
+      showModal: false
     }
   }
   componentDidMount = () => {
@@ -62,6 +64,10 @@ class App extends Component {
     })
   }
 
+  trocarCor = () => {
+
+  }
+
   checkCarta = i => {
     if(i[0] === this.state.mesa[0] || i[1] === this.state.mesa[1]){
       if(i[0] === 11 && i[1] === 3){
@@ -91,7 +97,8 @@ class App extends Component {
           console.log('+4')
           this.setState({
             mesa: i,
-            bloqueado: true
+            bloqueado: true,
+            showModal: true
           })
           return true;
         }else{
@@ -99,7 +106,8 @@ class App extends Component {
             console.log('MUDA COR');
             this.setState({
               mesa: i,
-              bloqueado: true
+              bloqueado: true,
+              showModal: true
             })
             return true;
           }
@@ -162,9 +170,27 @@ class App extends Component {
     }
   }
 
+  closeModal = color => {
+    let desk = this.state.mesa;
+    desk[0] = this.state.mesa === '+4' ? 12 : 13;
+    desk[1] = color;
+    this.setState({
+      showModal: false,
+      mesa: desk
+    });
+  }
+
+  showModal = () => {
+    if(this.state.showModal){
+      alert('pause')
+      return <Modal title="Escolha qual cor" show={this.closeModal} />
+    }
+  }
+
   render() {
     return (
       <div className="App">
+        {this.showModal()}
         <CardList cards={this.state.player1} remove={this.remove} />
         <button onClick={this.darCartas}>Jogar</button>
         
