@@ -23,10 +23,11 @@ export default class CardList extends Component {
                 if(carta[0] === 11){
                     //ADICIONAR CARTAS PRETAS
                     if(carta[1] % 2 === 0){
-                        numero = '+4'
                         color = 4
+                        numero = carta[1] === 0 ? '+4' : '#';
                     }else{
                         numero = '+2'
+                        color = carta[1]
                     }
                 }else{
                     numero = carta[0]

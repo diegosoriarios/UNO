@@ -16,7 +16,7 @@ class App extends Component {
   componentDidMount = () => {
     this.setState({
       mesa: [
-        Math.floor(Math.random() * 10),
+        Math.floor(Math.random() * 11),
         Math.floor(Math.random() * 4),
       ]
     })
@@ -50,7 +50,7 @@ class App extends Component {
   comprar = () => {
     let player1 = this.state.player1
     console.log(player1);
-    let valor = Math.floor(Math.random() * 10);
+    let valor = Math.floor(Math.random() * 12);
     let color = Math.floor(Math.random() * 4);
     player1 = player1.concat([
       [valor, color]
@@ -87,6 +87,7 @@ class App extends Component {
   jogadaOponente = () => {
     let opo = this.state.player2;
     let len = opo.length;
+    let comprarCarta = false;
     for(let i = 0; i < len; i++){
       if(opo[i][0] === this.state.mesa[0] || opo[i][1] === this.state.mesa[1]){
         this.setState({
@@ -99,7 +100,22 @@ class App extends Component {
           array.splice(index, 1);
           this.setState({player2: array}, () => console.log(this.state.player2));
         }
+        comprarCarta = false;
+        break;
+      }else{
+        comprarCarta = true;
       }
+    }
+    if(comprarCarta){
+      let player2 = this.state.player2
+      let valor = Math.floor(Math.random() * 12);
+      let color = Math.floor(Math.random() * 4);
+      player2 = player2.concat([
+        [valor, color]
+      ])
+      this.setState({
+        player2: player2,
+      })   
     }
   }
 
@@ -108,13 +124,16 @@ class App extends Component {
       <div className="App">
         <CardList cards={this.state.player1} remove={this.remove} />
         <button onClick={this.darCartas}>Jogar</button>
+        
         <br /><br />
+        
         <Card numero={this.state.mesa[0]} cor={this.state.mesa[1]} />
         <div onClick={this.comprar} className="deck">
-        <Card numero={'uno'} cor={4} />
+          <Card numero={'uno'} cor={4} />
         </div>
 
         <br /><br /><br />
+        
         <CardList hideCard={this.state.player2} />
       </div>
     );
