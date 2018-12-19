@@ -21,13 +21,26 @@ export default class CardList extends Component {
         if(this.props.cards){
             CardListItem = this.props.cards.map((carta, i) => {
                 if(carta[0] === 11){
-                    //ADICIONAR CARTAS PRETAS
-                    if(carta[1] % 2 === 0){
-                        color = 4
-                        numero = carta[1] === 0 ? '+4' : '#';
-                    }else{
-                        numero = '+2'
-                        color = carta[1]
+                    switch(carta[1]){
+                        case 0:
+                            color = 4
+                            numero = '+4'
+                            break;
+                        case 1:
+                            color = carta[1]
+                            numero = '+2'
+                            break;
+                        case 2:
+                            color = 4
+                            numero = '#'
+                            break;
+                        case 3:
+                            color = carta[1]
+                            numero = 'ø'
+                            break;
+                        default:
+                            color = carta[1]
+                            numero = carta[0]
                     }
                 }else{
                     numero = carta[0]

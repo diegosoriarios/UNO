@@ -7,10 +7,12 @@ class App extends Component {
   constructor(props){
     super(props);
     this.comprar = this.comprar.bind(this);
+    this.jogadaOponente = this.jogadaOponente.bind(this);
     this.state = {
       player1: [],
       player2: [],
       mesa:[0, 0],
+      bloqueado: false,
     }
   }
   componentDidMount = () => {
@@ -62,10 +64,47 @@ class App extends Component {
 
   checkCarta = i => {
     if(i[0] === this.state.mesa[0] || i[1] === this.state.mesa[1]){
-      this.setState({
-        mesa: i,
-      })
+      if(i[0] === 11 && i[1] === 3){
+        console.log('pular');
+        this.setState({
+          mesa: i,
+          bloqueado: true
+        })
+      }else{
+        if(i[0] === 11 && i[1] === 1){
+          console.log('+2')
+          this.setState({
+            mesa: i,
+            bloqueado: true
+          })
+        }else{
+          this.setState({
+            mesa: i,
+            bloqueado: false
+          })
+        }
+      }
       return true;
+    }else{
+      if(i[0] === 11){
+        if(i[1] === 0){
+          console.log('+4')
+          this.setState({
+            mesa: i,
+            bloqueado: true
+          })
+          return true;
+        }else{
+          if(i[1] === 2){
+            console.log('MUDA COR');
+            this.setState({
+              mesa: i,
+              bloqueado: true
+            })
+            return true;
+          }
+        }
+      }
     }
     return false;
   }
@@ -77,7 +116,11 @@ class App extends Component {
       index = array.indexOf(index)
       if (index !== -1) {
         array.splice(index, 1);
-        this.setState({player1: array}, () => this.jogadaOponente());
+        this.setState({player1: array}, () => {
+          if(!this.state.bloqueado){
+            this.jogadaOponente()
+          }
+        });
       }
     }else{
       console.log("carta não aceita");
