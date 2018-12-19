@@ -25,7 +25,7 @@ class App extends Component {
   darCartas = () => {
     let player1 = []
     for(let i = 0; i < 7; i++){
-      let valor = Math.floor(Math.random() * 10);
+      let valor = Math.floor(Math.random() * 12);
       let color = Math.floor(Math.random() * 4);
       player1 = player1.concat([
         [valor, color]
@@ -34,7 +34,7 @@ class App extends Component {
     }
     let player2 = []
     for(let i = 0; i < 7; i++){
-      let valor = Math.floor(Math.random() * 10);
+      let valor = Math.floor(Math.random() * 12);
       let color = Math.floor(Math.random() * 4);
       player2 = player2.concat([
         [valor, color]
@@ -71,7 +71,7 @@ class App extends Component {
   }
 
   remove = i => {
-    var array = [...this.state.player1]; // make a separate copy of the array
+    var array = [...this.state.player1];
     var index = array[i];
     if(this.checkCarta(index)){
       index = array.indexOf(index)
@@ -92,7 +92,7 @@ class App extends Component {
         this.setState({
           mesa: opo[i],
         })
-        var array = [...this.state.player2]; // make a separate copy of the array
+        var array = [...this.state.player2];
         var index = array[i];
         index = array.indexOf(index)
         if (index !== -1) {

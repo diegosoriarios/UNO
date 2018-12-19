@@ -17,13 +17,25 @@ export default class CardList extends Component {
     }
 
     render(){
-        let CardListItem
+        let CardListItem, numero, color;
         if(this.props.cards){
             CardListItem = this.props.cards.map((carta, i) => {
+                if(carta[0] === 11){
+                    //ADICIONAR CARTAS PRETAS
+                    if(carta[1] % 2 === 0){
+                        numero = '+4'
+                        color = 4
+                    }else{
+                        numero = '+2'
+                    }
+                }else{
+                    numero = carta[0]
+                    color = carta[1]
+                }
                 return (
                     <div key={i} className="carta" onClick={() => this.useCard(i)}>
-                        <div className="box-carta" style={{backgroundColor: cor[carta[1]]}}>
-                            <h3>{carta[0]}</h3>
+                        <div className="box-carta" style={{backgroundColor: cor[color]}}>
+                            <h3>{numero}</h3>
                         </div>
                     </div>
                 );
