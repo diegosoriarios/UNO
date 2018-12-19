@@ -77,10 +77,29 @@ class App extends Component {
       index = array.indexOf(index)
       if (index !== -1) {
         array.splice(index, 1);
-        this.setState({player1: array}, () => console.log(this.state.player1));
+        this.setState({player1: array}, () => this.jogadaOponente());
       }
     }else{
       console.log("carta não aceita");
+    }
+  }
+
+  jogadaOponente = () => {
+    let opo = this.state.player2;
+    let len = opo.length;
+    for(let i = 0; i < len; i++){
+      if(opo[i][0] === this.state.mesa[0] || opo[i][1] === this.state.mesa[1]){
+        this.setState({
+          mesa: opo[i],
+        })
+        var array = [...this.state.player2]; // make a separate copy of the array
+        var index = array[i];
+        index = array.indexOf(index)
+        if (index !== -1) {
+          array.splice(index, 1);
+          this.setState({player2: array}, () => console.log(this.state.player2));
+        }
+      }
     }
   }
 
