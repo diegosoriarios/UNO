@@ -1,0 +1,20 @@
+.carta{
+    width: 80px;
+    height: 120px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.box-carta {
+    height: 115px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    color: white;
+    line-height: 5px;
+    font-size: 3em;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
