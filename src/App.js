@@ -8,7 +8,6 @@ class App extends Component {
   constructor(props){
     super(props);
     this.comprar = this.comprar.bind(this);
-    this.jogadaOponente = this.jogadaOponente.bind(this);
     this.state = {
       player1: [],
       player2: [],
@@ -34,7 +33,6 @@ class App extends Component {
       player1 = player1.concat([
         [valor, color]
       ])
-      console.log(player1);
     }
     let player2 = []
     for(let i = 0; i < 7; i++){
@@ -43,7 +41,6 @@ class App extends Component {
       player2 = player2.concat([
         [valor, color]
       ])
-      console.log(player2);
     }
     this.setState({
       player1: player1,
@@ -106,7 +103,7 @@ class App extends Component {
             console.log('MUDA COR');
             this.setState({
               mesa: i,
-              bloqueado: true,
+              bloqueado: false,
               showModal: true
             })
             return true;
@@ -127,6 +124,8 @@ class App extends Component {
         this.setState({player1: array}, () => {
           if(!this.state.bloqueado){
             this.jogadaOponente()
+          }else{
+            console.log("continue jogando")
           }
         });
       }
@@ -149,7 +148,7 @@ class App extends Component {
         index = array.indexOf(index)
         if (index !== -1) {
           array.splice(index, 1);
-          this.setState({player2: array}, () => console.log(this.state.player2));
+          this.setState({player2: array});
         }
         comprarCarta = false;
         break;
