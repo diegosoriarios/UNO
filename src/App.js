@@ -50,7 +50,6 @@ class App extends Component {
 
   comprar = () => {
     let player1 = this.state.player1
-    console.log(player1);
     let valor = Math.floor(Math.random() * 12);
     let color = Math.floor(Math.random() * 4);
     player1 = player1.concat([
@@ -58,11 +57,37 @@ class App extends Component {
     ])
     this.setState({
       player1: player1,
+    }, () => {
+      this.jogadaOponente();
     })
   }
 
-  trocarCor = () => {
-
+  compraMaisCartas = (v, player) => {
+    if(player === 1){
+      let player1 = this.state.player1
+      for(let i = 0; i < v; i++){
+        let valor = Math.floor(Math.random() * 12);
+        let color = Math.floor(Math.random() * 4);
+        player1 = player1.concat([
+          [valor, color]
+        ])
+      }
+      this.setState({
+        player1: player1,
+      })
+    }else{
+      let player2 = this.state.player2
+      for(let i = 0; i < v; i++){
+        let valor = Math.floor(Math.random() * 12);
+        let color = Math.floor(Math.random() * 4);
+        player2 = player2.concat([
+          [valor, color]
+        ])
+      }
+      this.setState({
+        player2: player2,
+      })
+    }
   }
 
   checkCarta = i => {
@@ -79,6 +104,8 @@ class App extends Component {
           this.setState({
             mesa: i,
             bloqueado: true
+          }, () =>{
+            this.compraMaisCartas(2, 2);
           })
         }else{
           this.setState({
@@ -96,6 +123,8 @@ class App extends Component {
             mesa: i,
             bloqueado: true,
             showModal: true
+          }, () => {
+            this.compraMaisCartas(4, 2);
           })
           return true;
         }else{
