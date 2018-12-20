@@ -28,9 +28,6 @@ class App extends Component {
   }
 
   componentDidUpdate = () => {
-    console.log('Mesa: ' + this.state.mesa);
-    console.log('P1: ' + this.state.player1);
-    console.log('P2: ' + this.state.player2);
     if(this.state.player1.length === 0){
       alert('Player1 Ganhou');
       window.location.reload(false); 
@@ -109,7 +106,7 @@ class App extends Component {
   }
 
   checkCarta = i => {
-    if(i[0] === this.state.mesa[0] || i[1] === this.state.mesa[1] || this.state.mesa[1] === 4){
+    if(i[0] === this.state.mesa[0] || i[1] === this.state.mesa[1] || this.state.mesa[0] === 11){
       if(i[0] === 10 && i[1] % 2 !== 0){
         console.log('pular');
         this.setState({
@@ -188,7 +185,7 @@ class App extends Component {
     //loop pelas cartas do oponente
     for(let i = 0; i < len; i++){
       //se a carta for da mesma cor ou do mesmo numero
-      if(opo[i][0] === this.state.mesa[0] || opo[i][1] === this.state.mesa[1] || this.state.mesa[1] === 4){
+      if(opo[i][0] === this.state.mesa[0] || opo[i][1] === this.state.mesa[1] || this.state.mesa[0] === 11){
         if(opo[i][0] === 10 && opo[i][1] % 2 !== 0){
           console.log('pular');
           this.setState({
