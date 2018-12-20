@@ -293,7 +293,7 @@ class App extends Component {
         
         <Card numero={this.state.mesa[0]} cor={this.state.mesa[1]} />
         <div onClick={this.comprar} className="deck">
-          <Card numero={'un'} cor={4} />
+          <Card numero={'JS'} cor={4} />
         </div>
 
         <br /><br /><br />
