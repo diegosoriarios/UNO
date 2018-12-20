@@ -226,12 +226,12 @@ class App extends Component {
             this.setState({player2: array});
           }
           comprarCarta = false;
+          let rand = Math.floor() * 4;
           this.setState({
             mesa: opo[i],
             jogadorBlock: true,
           }, () => {
-            this.compraMaisCartas(4, 1);
-            let rand = Math.floor() * 4;
+            this.compraMaisCartas(4, 1);            
             this.closeModal(rand);
           })
           break;
