@@ -24,13 +24,14 @@ class App extends Component {
         Math.floor(Math.random() * 4),
       ]
     })
+    this.darCartas();
   }
 
   componentDidUpdate = () => {
     if(this.state.player1.length === 0){
       alert('Player1 Ganhou');
     }else{
-      if(this.state.player1.length === 0){
+      if(this.state.player2.length === 0){
         alert('Player2 Ganhou');
       }
     }
@@ -103,14 +104,14 @@ class App extends Component {
 
   checkCarta = i => {
     if(i[0] === this.state.mesa[0] || i[1] === this.state.mesa[1]){
-      if(i[0] === 11 && i[1] === 3){
+      if(i[0] === 10 && i[1] % 2 !== 0){
         console.log('pular');
         this.setState({
           mesa: i,
           bloqueado: true
         })
       }else{
-        if(i[0] === 11 && i[1] === 1){
+        if(i[0] === 10 && i[1] % 2 === 0){
           console.log('+2')
           this.setState({
             mesa: i,
@@ -128,7 +129,7 @@ class App extends Component {
       return true;
     }else{
       if(i[0] === 11){
-        if(i[1] === 0){
+        if(i[1] % 2 === 0){
           console.log('+4')
           this.setState({
             mesa: i,
@@ -139,7 +140,7 @@ class App extends Component {
           })
           return true;
         }else{
-          if(i[1] === 2){
+          if(i[1] % 2 !== 0){
             console.log('MUDA COR');
             this.setState({
               mesa: i,
@@ -182,14 +183,14 @@ class App extends Component {
     for(let i = 0; i < len; i++){
       //se a carta for da mesma cor ou do mesmo numero
       if(opo[i][0] === this.state.mesa[0] || opo[i][1] === this.state.mesa[1]){
-        if(opo[i][0] === 11 && opo[i][1] === 3){
+        if(opo[i][0] === 10 && opo[i][1] % 2 !== 0){
           console.log('pular');
           this.setState({
             mesa: opo[i],
             jogadorBlock: true
           })
         }else{
-          if(opo[i][0] === 11 && opo[i][1] === 1){
+          if(opo[i][0] === 10 && opo[i][1] % 2 === 0){
             console.log('+2')
             this.setState({
               mesa: opo[i],
@@ -212,7 +213,7 @@ class App extends Component {
         })
         break;
       }else{
-        if(opo[i][0] === 11 && opo[i][1] === 0){
+        if(opo[i][0] === 11 && opo[i][1] % 2 === 0){
           console.log('+4')
           array = [...this.state.player2];
           index = array[i];
@@ -232,7 +233,7 @@ class App extends Component {
           })
           break;
         }else{
-          if(opo[i][0] === 11 && opo[i][1] === 2){
+          if(opo[i][0] === 11 && opo[i][1] % 2 !== 0){
             console.log('MUDA COR');
             array = [...this.state.player2];
             index = array[i];
@@ -268,7 +269,11 @@ class App extends Component {
       })   
     }
     if(this.state.jogadorBlock){
-      this.jogadaOponente();
+      this.setState({
+        jogadorBlock: false,
+      }, () => {
+        this.jogadaOponente();
+      })
     }
   }
 
@@ -296,7 +301,6 @@ class App extends Component {
       <div className="App">
         {this.showModal()}
         <CardList cards={this.state.player1} remove={this.remove} />
-        <button onClick={this.darCartas}>Jogar</button>
         
         <br /><br />
         

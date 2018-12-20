@@ -18,30 +18,25 @@ class Card extends Component {
                 color = this.props.cor
             }else{
                 if(carta[0] === 11){
-                    switch(carta[1]){
-                        case 0:
-                            color = 4
-                            numero = '+4'
-                            break;
-                        case 1:
-                            color = carta[1]
-                            numero = '+2'
-                            break;
-                        case 2:
-                            color = 4
-                            numero = '#'
-                            break;
-                        case 3:
-                            color = carta[1]
-                            numero = 'ø'
-                            break;
-                        default:
-                            color = carta[1]
-                            numero = carta[0]
+                    if(carta[1] % 2 === 0){
+                        color = 4
+                        numero = '+4'
+                    }else{
+                        color = 4
+                        numero = '#'
                     }
                 }else{
-                    numero = carta[0]
-                    color = carta[1]
+                    if(carta[0] === 10){
+                        color = carta[1]
+                        if(carta[1] % 2 === 0){
+                            numero = '+2'
+                        }else{
+                            numero = 'ø'
+                        }
+                    }else{
+                        numero = carta[0]
+                        color = carta[1]
+                    }
                 }
             }
         }

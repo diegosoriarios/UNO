@@ -7,6 +7,7 @@
     margin: 10px;
     cursor: pointer;
     display: inline-block;
+    background-color: #fff;
 }
 
 .box-carta {
@@ -45,21 +46,21 @@
 }
 
 .box-modal button:nth-child(2){
-    background-color: red;
-    color: red;
+    background-color: #ff6961;
+    color: #ff6961;
 }
 
 .box-modal button:nth-child(3){
-    background-color: blue;
-    color: blue;
+    background-color: #5d9b9b;
+    color: #5d9b9b;
 }
 
 .box-modal button:nth-child(4){
-    background-color: green;
-    color: green;
+    background-color: #77dd77;
+    color: #77dd77;
 }
 
 .box-modal button:nth-child(5){
-    background-color: yellow;
-    color: yellow;
+    background-color: #fdfd96;
+    color: #fdfd96;
 }
