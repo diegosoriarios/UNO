@@ -26,6 +26,16 @@ class App extends Component {
     })
   }
 
+  componentDidUpdate = () => {
+    if(this.state.player1.length === 0){
+      alert('Player1 Ganhou');
+    }else{
+      if(this.state.player1.length === 0){
+        alert('Player2 Ganhou');
+      }
+    }
+  }
+
   darCartas = () => {
     let player1 = []
     for(let i = 0; i < 7; i++){
@@ -37,9 +47,8 @@ class App extends Component {
     }
     let player2 = []
     for(let i = 0; i < 7; i++){
-      //let valor = Math.floor(Math.random() * 12);
+      let valor = Math.floor(Math.random() * 12);
       let color = Math.floor(Math.random() * 4);
-      let valor = 11;
       player2 = player2.concat([
         [valor, color]
       ])
