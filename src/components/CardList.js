@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 //import Card from './Card';
 import '../style/style.css'
 
-const cor = ["red", "blue", "green", "yellow", "black"]
+const cor = ["#ff6961", "#5d9b9b", "#77dd77", "#fdfd96", "black"]
 
 export default class CardList extends Component {
     constructor(props){
@@ -59,7 +59,7 @@ export default class CardList extends Component {
                 return (
                     <div key={i} className="carta" onClick={() => this.useCard(i)}>
                         <div className="box-carta" style={{backgroundColor: cor[4]}}>
-                            <h3 style={{fontSize: '0.8em', lineHeight: '40px'}}>uno</h3>
+                            <h3>un</h3>
                         </div>
                     </div>
                 );

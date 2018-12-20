@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../style/style.css'
 
-const cor = ["red", "blue", "green", "yellow", "black"]
+const cor = ["#ff6961", "#5d9b9b", "#77dd77", "#fdfd96", "black"]
 
 class Card extends Component {
     render(){
