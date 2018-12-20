@@ -30,9 +30,12 @@ class App extends Component {
   componentDidUpdate = () => {
     if(this.state.player1.length === 0){
       alert('Player1 Ganhou');
+      window.location.reload(false); 
+
     }else{
       if(this.state.player2.length === 0){
         alert('Player2 Ganhou');
+        window.location.reload(false); 
       }
     }
   }
