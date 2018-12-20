@@ -13,6 +13,7 @@ class App extends Component {
       player2: [],
       mesa:[0, 0],
       bloqueado: false,
+      jogadorBlock: false,
       showModal: false
     }
   }
@@ -36,8 +37,9 @@ class App extends Component {
     }
     let player2 = []
     for(let i = 0; i < 7; i++){
-      let valor = Math.floor(Math.random() * 12);
+      //let valor = Math.floor(Math.random() * 12);
       let color = Math.floor(Math.random() * 4);
+      let valor = 11;
       player2 = player2.concat([
         [valor, color]
       ])
@@ -167,11 +169,27 @@ class App extends Component {
     let opo = this.state.player2;
     let len = opo.length;
     let comprarCarta = false;
+    //loop pelas cartas do oponente
     for(let i = 0; i < len; i++){
+      //se a carta for da mesma cor ou do mesmo numero
       if(opo[i][0] === this.state.mesa[0] || opo[i][1] === this.state.mesa[1]){
-        this.setState({
-          mesa: opo[i],
-        })
+        if(opo[i][0] === 11 && opo[i][1] === 3){
+          console.log('pular');
+          this.setState({
+            mesa: opo[i],
+            jogadorBlock: true
+          })
+        }else{
+          if(opo[i][0] === 11 && opo[i][1] === 1){
+            console.log('+2')
+            this.setState({
+              mesa: opo[i],
+              jogadorBlock: true
+            }, () =>{
+              this.compraMaisCartas(2, 1);
+            })
+          }
+        }
         var array = [...this.state.player2];
         var index = array[i];
         index = array.indexOf(index)
@@ -180,9 +198,53 @@ class App extends Component {
           this.setState({player2: array});
         }
         comprarCarta = false;
+        this.setState({
+          mesa: opo[i],
+        })
         break;
       }else{
-        comprarCarta = true;
+        if(opo[i][0] === 11 && opo[i][1] === 0){
+          console.log('+4')
+          array = [...this.state.player2];
+          index = array[i];
+          index = array.indexOf(index)
+          if (index !== -1) {
+            array.splice(index, 1);
+            this.setState({player2: array});
+          }
+          comprarCarta = false;
+          this.setState({
+            mesa: opo[i],
+            jogadorBlock: true,
+          }, () => {
+            this.compraMaisCartas(4, 1);
+            let rand = Math.floor() * 4;
+            this.closeModal(rand);
+          })
+          break;
+        }else{
+          if(opo[i][0] === 11 && opo[i][1] === 2){
+            console.log('MUDA COR');
+            array = [...this.state.player2];
+            index = array[i];
+            index = array.indexOf(index)
+            if (index !== -1) {
+              array.splice(index, 1);
+              this.setState({player2: array});
+            }
+            comprarCarta = false;
+            let rand = Math.floor(Math.random() * 4);
+            this.setState({
+              mesa: opo[i],
+              bloqueado: false,
+            }, () => {
+              this.closeModal(rand);
+            })
+            break;
+          }else{
+            comprarCarta = true;
+          }
+        }
       }
     }
     if(comprarCarta){
@@ -196,9 +258,14 @@ class App extends Component {
         player2: player2,
       })   
     }
+    if(this.state.jogadorBlock){
+      this.jogadaOponente();
+    }
   }
 
   closeModal = color => {
+    console.log(color);
+    console.log(this.state.mesa);
     let desk = this.state.mesa;
     desk[0] = this.state.mesa === '+4' ? 12 : 13;
     desk[1] = color;
@@ -226,7 +293,7 @@ class App extends Component {
         
         <Card numero={this.state.mesa[0]} cor={this.state.mesa[1]} />
         <div onClick={this.comprar} className="deck">
-          <Card numero={'uno'} cor={4} />
+          <Card numero={14} cor={4} />
         </div>
 
         <br /><br /><br />

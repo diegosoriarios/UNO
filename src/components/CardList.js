@@ -59,7 +59,7 @@ export default class CardList extends Component {
                 return (
                     <div key={i} className="carta" onClick={() => this.useCard(i)}>
                         <div className="box-carta" style={{backgroundColor: cor[4]}}>
-                            <h3>uno</h3>
+                            <h3 style={{fontSize: '0.8em', lineHeight: '40px'}}>uno</h3>
                         </div>
                     </div>
                 );
