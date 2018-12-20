@@ -28,6 +28,9 @@ class App extends Component {
   }
 
   componentDidUpdate = () => {
+    console.log('Mesa: ' + this.state.mesa);
+    console.log('P1: ' + this.state.player1);
+    console.log('P2: ' + this.state.player2);
     if(this.state.player1.length === 0){
       alert('Player1 Ganhou');
       window.location.reload(false); 
