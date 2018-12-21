@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import '../style/style.css'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBan, faThLarge } from '@fortawesome/free-solid-svg-icons'
+import { faReact } from '@fortawesome/free-brands-svg-icons'
 
-const cor = ["#ff6961", "#5d9b9b", "#77dd77", "#fdfd96", "black"]
+library.add(faBan, faReact, faThLarge)
+
+const cor = ["#ff6961", "#5d9b9b", "#77dd77", "#e1e105", "black"]
 
 class Card extends Component {
     render(){
@@ -31,7 +37,7 @@ class Card extends Component {
                         if(carta[1] % 2 === 0){
                             numero = '+2'
                         }else{
-                            numero = 'ø'
+                            numero = <FontAwesomeIcon icon="ban" className="icon" />
                         }
                     }else{
                         numero = carta[0]
@@ -40,10 +46,15 @@ class Card extends Component {
                 }
             }
         }
+        if(carta[0] === 'JS'){
+            numero =  <FontAwesomeIcon icon = {['fab','react']} className="icon" /> 
+        }
         return(
             <div className="carta">
                 <div className="box-carta" style={{backgroundColor: cor[color]}}>
-                    <h3>{numero}</h3>
+                    <div className="white-mark">
+                        <h3 style={{color: cor[color]}}>{numero}</h3>
+                    </div>
                 </div>
             </div>
         );
