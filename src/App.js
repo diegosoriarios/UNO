@@ -166,7 +166,7 @@ class App extends Component {
       if (index !== -1) {
         array.splice(index, 1);
         this.setState({player1: array}, () => {
-          if(!this.state.bloqueado){
+          if(!this.state.bloqueado && !this.state.showModal){
             this.jogadaOponente()
           }else{
             console.log("continue jogando")
@@ -290,6 +290,8 @@ class App extends Component {
     this.setState({
       showModal: false,
       mesa: desk
+    }, () => {
+      this.jogadaOponente();
     });
   }
 
