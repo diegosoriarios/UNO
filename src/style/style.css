@@ -75,7 +75,7 @@
     margin-top: -40px;
 }
 
-.white-mark h3 {
+.white-mark h3, .picker h3 {
     transform: skewY(25deg);
     line-height: 70px;
     letter-spacing: -0.1em;
@@ -93,6 +93,7 @@
     border-radius: 50%;
     transform: skewY(-25deg);
     margin-top: -40px;
+    line-height: 70px;
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff6961+1,5d9b9b+33,77dd77+66,e1e105+100 */
     background: #ff6961; /* Old browsers */
     background: -moz-linear-gradient(-45deg, #ff6961 1%, #5d9b9b 33%, #77dd77 66%, #e1e105 100%); /* FF3.6-15 */

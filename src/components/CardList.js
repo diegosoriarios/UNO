@@ -51,7 +51,7 @@ export default class CardList extends Component {
                 return (
                     <div key={i} className="carta" onClick={() => this.useCard(i)}>
                         <div className="box-carta" style={{backgroundColor: cor[color]}}>
-                            <div className="white-mark">
+                            <div className={carta[0] === 11 ? "picker" : "white-mark"}>
                                 <h3 style={{color: cor[color]}}>{numero}</h3>
                             </div>
                         </div>
